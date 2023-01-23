@@ -23,3 +23,11 @@ export const signOut = (token) => (
 export const listTransactions = (token) => (
   apiRequests.get("/transactions", authConfig(token))
 );
+
+export const updateTransaction = ({ id, token, description, amountCents }) => (
+  apiRequests.put(`/transactions/${id}`, { description, amountCents }, authConfig(token))
+);
+
+export const createTransaction = ({ token, description, amountCents }) => (
+  apiRequests.post("/transactions", { description, amountCents }, authConfig(token))
+);

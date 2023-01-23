@@ -1,29 +1,42 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserProviderContext } from "../../providers/UserProvider";
+import { createTransaction, updateTransaction } from "../../services/mywallet-api";
 import ButtonStyled from "../../styles/Button.styled";
 import FormStyled from "../../styles/Form.styled";
 import InputStyled from "../../styles/Input.styled";
+import moneyMask from "../../utils/functions/moneyMask";
 
 const EntryForm = ({ text, id }) => {
-  const [amountCents, setAmountCents] = useState(undefined);
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
+  const { user } = useContext(UserProviderContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const updateRequest = async (e) => {
+  const handleRequest = async (e, apiRequest) => {
     e.preventDefault();
-  };
+    const signedAmountCents = /entrada/.test(location.pathname) ? amount*100 : -amount*100;
 
-  const createRequest = async (e) => {
-    e.preventDefault();
+    try {
+      const res = await apiRequest({ description, amountCents: signedAmountCents, token: user.token });
+      console.log(res);
+
+      navigate("/home");
+    } catch (error) {
+      console.log(error.response?.data);
+    }
   };
 
   return (
-    <FormStyled onSubmit={id ? updateRequest : createRequest}>
+    <FormStyled onSubmit={e => handleRequest(e, (id ? updateTransaction : createTransaction))}>
       <InputStyled
         type="number"
         step=".01"
         name="amountCents"
         placeholder="Valor"
-        value={amountCents}
-        onChange={e => setAmountCents(e.target.value)}
+        value={amount}
+        onChange={e => setAmount(moneyMask(e.target.value))}
         required
       />
       <InputStyled

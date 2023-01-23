@@ -7,10 +7,17 @@ const TransactionsStyled = styled.ul`
   margin-bottom: 15px;
   border-radius: 5px;
   padding-top: 22px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
   position: relative;
+  h1 {
+    font-size: 20px;
+    color: ${props => props.theme.colors.weak};
+    margin: 60% auto;
+    width: 70%;
+    text-align: center;
+  }
 `;
 
 export default TransactionsStyled;

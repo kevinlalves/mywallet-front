@@ -22,7 +22,6 @@ const Header = ({ text, isHome }) => {
         onClick={isHome ? logOut : () => navigate("/home")}
         src={isHome ? logOutIcon : homeIcon}
         alt="logout/home icon"
-
       />
     </HeaderStyled>
   );

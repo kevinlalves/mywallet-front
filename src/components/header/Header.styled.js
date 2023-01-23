@@ -9,9 +9,11 @@ const HeaderStyled = styled.div`
   p {
     color: ${props => props.theme.colors.back};
     font-size: 26px;
+    font-weight: 700;
   }
   img {
     width: 24px;
+    cursor: pointer;
   }
 `;
 

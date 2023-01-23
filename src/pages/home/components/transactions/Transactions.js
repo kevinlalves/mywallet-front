@@ -6,25 +6,22 @@ import Transaction from "../transaction/Transaction";
 import TransactionsStyled from "./Transactions.styled";
 import Loading from "../../../../components/loading/Loading";
 import Balance from "../balance/Balance";
+import handleError from "../../../../utils/functions/handleError";
 
 const Transactions = () => {
-  const { user } = useContext(UserProviderContext);
+  const { user, setUser } = useContext(UserProviderContext);
   const [transactions, setTransactions] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!user) {
-        navigate("/");
-      }
-
       try {
         const { data: newTransactions } = await listTransactions(user.token);
 
         setTransactions(newTransactions);
       }
       catch (error) {
-        console.log(error.response?.data);
+        handleError({ error, navigate, setUser });
       }
     };
 
@@ -39,11 +36,12 @@ const Transactions = () => {
           date={transaction.creationDate}
           amountCents={transaction.amountCents}
           id={transaction._id}
+          key={transaction._id}
         />
       ) : <h1>Não há registros de entrada ou saída</h1>}
 
-      {transactions.length &&
-        <Balance amountCents={transactions.reduce((sum, transaction) => sum + transaction.amountCents)} />
+      {transactions.length > 0 &&
+        <Balance amountCents={transactions.reduce((sum, transaction) => (sum + transaction.amountCents), 0)} />
       }
     </TransactionsStyled>
   ) : <Loading />;

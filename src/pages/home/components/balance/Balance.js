@@ -1,10 +1,11 @@
+import moneyMask from "../../../../utils/functions/moneyMask";
 import BalanceStyled from "./Balance.styled";
 
-const Balance = (amountCents) => {
+const Balance = ({ amountCents }) => {
   return (
-    <BalanceStyled>
+    <BalanceStyled isProfit={amountCents > 0}>
       <p>SALDO</p>
-      <p>{amountCents}</p>
+      <p>{moneyMask(`${amountCents}`)}</p>
     </BalanceStyled>
   );
 };

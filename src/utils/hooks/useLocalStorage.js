@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 
 const useLocalStorage = (key) => {
-  const [storedValue, setStoredValue] = useState(() => window.localStorage.getItem(key));
+  const [storedValue, setStoredValue] = useState(() => JSON.parse(window.localStorage.getItem(key)));
 
   const setValue = useCallback((value) => {
     setStoredValue(value);

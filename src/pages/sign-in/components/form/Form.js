@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { USER_STORAGE_KEY } from "../../../../providers/UserProvider";
+import { UserProviderContext, USER_STORAGE_KEY } from "../../../../providers/UserProvider";
 import { signIn } from "../../../../services/mywallet-api";
 import ButtonStyled from "../../../../styles/Button.styled";
 import FormStyled from "../../../../styles/Form.styled";
@@ -10,12 +10,13 @@ export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(UserProviderContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await signIn({ email, password });
-      window.localStorage.setItem(USER_STORAGE_KEY, data);
+      setUser(data);
 
       navigate("/home");
     }

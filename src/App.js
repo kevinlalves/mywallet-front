@@ -13,8 +13,8 @@ import { UserProvider } from "./providers/UserProvider";
 export default function App() {
   return (
     <ThemeProvider theme={{ colors }}>
-      <UserProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <UserProvider>
           <Routes>
             <Route path="/" element={<SignInPage />} />
             <Route path="/cadastro" element={<SignUpPage />} />
@@ -24,8 +24,8 @@ export default function App() {
             <Route path="/editar-entrada/:id" element={<EditProfitPage />} />
             <Route path="/editar-saida/:id" element={<EditDebtPage />} />
           </Routes>
-        </BrowserRouter>
-      </UserProvider>
+        </UserProvider>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

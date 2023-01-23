@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TransactionStyled from "./Transaction.styled";
+import moneyMask from "../../../../utils/functions/moneyMask";
 
 const Transaction = ({ date, description, amountCents, id }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Transaction = ({ date, description, amountCents, id }) => {
     <TransactionStyled isProfit={isProfit}>
       <p>{date}</p>
       <p onClick={updateTransaction}>{description}</p>
-      <p>{amountCents/100}</p>
+      <p>{moneyMask(`${amountCents}`)}</p>
     </TransactionStyled>
   );
 };
