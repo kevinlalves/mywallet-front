@@ -17,14 +17,14 @@ const EntryForm = ({ text, id }) => {
 
   const handleRequest = async (e, apiRequest) => {
     e.preventDefault();
-    const signedAmountCents = /entrada/.test(pathname) ? amount*100 : -amount*100;
+    const signedAmountCents = /entrada/.test(pathname) ? amount * 100 : -amount * 100;
 
     try {
       await apiRequest({ description, amountCents: signedAmountCents, token: user.token, id });
 
       navigate("/home");
     } catch (error) {
-      handleError(error, navigate, setUser);
+      handleError({ error, navigate, setUser });
     }
   };
 

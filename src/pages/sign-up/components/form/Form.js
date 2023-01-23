@@ -14,6 +14,12 @@ export default function SignInForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== passwordConfirmation) {
+      window.alert("Passwords don't match");
+      return;
+    }
+
     try {
       await signUp({ name, email, password });
 
