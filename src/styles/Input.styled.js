@@ -7,6 +7,10 @@ const InputStyled = styled.input`
   border: none;
   border-radius: 5px;
   background-color: ${props => props.theme.colors.back};
+  font-size: 20px;
+  ::placeholder {
+    font-size: 20px;
+  }
 `;
 
 export default InputStyled;

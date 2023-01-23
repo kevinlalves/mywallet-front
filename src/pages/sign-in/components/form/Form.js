@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { USER_STORAGE_KEY } from "../../../../providers/UserProvider";
 import { signIn } from "../../../../services/mywallet-api";
 import ButtonStyled from "../../../../styles/Button.styled";
 import FormStyled from "../../../../styles/Form.styled";
@@ -14,12 +15,12 @@ export default function SignInForm() {
     e.preventDefault();
     try {
       const { data } = await signIn({ email, password });
-      window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem(USER_STORAGE_KEY, data);
 
       navigate("/home");
     }
     catch (error) {
-      console.log(error.data);
+      console.log(error.response?.data);
     }
   };
 
