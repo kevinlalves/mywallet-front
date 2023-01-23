@@ -5,7 +5,7 @@ const BalanceStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  width: 100%;
+  width: 95%;
   bottom: 12px;
   p {
     font-size: 17px;

@@ -11,6 +11,7 @@ import handleError from "../../../../utils/functions/handleError";
 const Transactions = () => {
   const { user, setUser } = useContext(UserProviderContext);
   const [transactions, setTransactions] = useState(null);
+  const [updated, setUpdated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Transactions = () => {
     };
 
     fetchData();
-  }, [user, navigate, setUser]);
+  }, [user, navigate, setUser, updated]);
 
   return transactions ? (
     <TransactionsStyled>
@@ -37,6 +38,7 @@ const Transactions = () => {
           amountCents={transaction.amountCents}
           id={transaction._id}
           key={transaction._id}
+          setUpdated={setUpdated}
         />
       ) : <h1>Não há registros de entrada ou saída</h1>}
 

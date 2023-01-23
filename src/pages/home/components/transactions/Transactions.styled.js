@@ -7,8 +7,8 @@ const TransactionsStyled = styled.ul`
   margin-bottom: 15px;
   border-radius: 5px;
   padding-top: 22px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 14px;
+  padding-right: 10px;
   padding-bottom: 16px;
   position: relative;
   h1 {

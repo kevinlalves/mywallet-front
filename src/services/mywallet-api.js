@@ -31,3 +31,7 @@ export const updateTransaction = ({ id, token, description, amountCents }) => (
 export const createTransaction = ({ token, description, amountCents }) => (
   apiRequests.post("/transactions", { description, amountCents }, authConfig(token))
 );
+
+export const deleteTransaction = ({ token, id }) => (
+  apiRequests.delete(`/transactions/${id}`, authConfig(token))
+);

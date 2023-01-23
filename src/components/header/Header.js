@@ -19,7 +19,7 @@ const Header = ({ text, isHome }) => {
   return (
     <HeaderStyled>
       <p>{text}</p>
-      <IconContext.Provider value={{size: "36px", color: "white"}}>
+      <IconContext.Provider value={{size: "36px", color: "white", style: { cursor: "pointer" }}}>
         {isHome ? <img
           onClick={logOut}
           src={logOutIcon}
