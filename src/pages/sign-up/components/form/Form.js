@@ -20,7 +20,7 @@ export default function SignInForm() {
       navigate("/");
     }
     catch (error) {
-      console.log(error.response?.data);
+      window.alert(error.response?.data);
     }
   };
 

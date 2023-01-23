@@ -19,7 +19,7 @@ export const UserProvider = (props) => {
     if (!user) {
       navigate("/");
     }
-  }, [user, navigate]);
+  }, [user, navigate, pathname]);
 
   return (
     <UserProviderContext.Provider value={{ user, setUser }}>

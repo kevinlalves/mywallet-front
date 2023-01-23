@@ -7,7 +7,7 @@ import { deleteTransaction } from "../../../../services/mywallet-api";
 import { useContext } from "react";
 import { UserProviderContext } from "../../../../providers/UserProvider";
 
-const Transaction = ({ date, description, amountCents, id, setUpdated }) => {
+const Transaction = ({ date, description, amountCents, id, setUpdated, updated }) => {
   const navigate = useNavigate();
   const { user } = useContext(UserProviderContext);
   const isProfit = amountCents >= 0;
@@ -24,9 +24,9 @@ const Transaction = ({ date, description, amountCents, id, setUpdated }) => {
     try {
       await deleteTransaction({ id, token: user.token });
 
-      setUpdated(true);
+      setUpdated(!updated);
     } catch (error) {
-      console.log(error.response?.data);
+      window.alert(error.response?.data);
     }
   };
 
@@ -35,7 +35,7 @@ const Transaction = ({ date, description, amountCents, id, setUpdated }) => {
       <p>{date}</p>
       <p onClick={updateTransaction}>{description}</p>
       <p>{moneyMask(`${amountCents}`)}</p>
-      <IconContext.Provider value={{size: "12px", style: { cursor: "pointer" }}}>
+      <IconContext.Provider value={{ size: "12px", style: { cursor: "pointer" } }}>
         <GiCrossedBones onClick={deleteRequest} />
       </IconContext.Provider>
     </TransactionStyled>

@@ -21,7 +21,7 @@ export default function SignInForm() {
       navigate("/home");
     }
     catch (error) {
-      console.log(error.response?.data);
+      window.alert(error.response?.data)
     }
   };
 

@@ -39,6 +39,7 @@ const Transactions = () => {
           id={transaction._id}
           key={transaction._id}
           setUpdated={setUpdated}
+          updated={updated}
         />
       ) : <h1>Não há registros de entrada ou saída</h1>}
 

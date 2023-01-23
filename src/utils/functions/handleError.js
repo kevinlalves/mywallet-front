@@ -5,7 +5,7 @@ const handleError = ({ error, navigate, setUser }) => {
     navigate("/");
   }
 
-  console.log(error.response?.data);
+  window.alert(error.response?.data);
 };
 
 export default handleError;
