@@ -26,7 +26,7 @@ const Transactions = () => {
     };
 
     fetchData();
-  }, [user, navigate]);
+  }, [user, navigate, setUser]);
 
   return transactions ? (
     <TransactionsStyled>

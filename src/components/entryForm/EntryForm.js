@@ -8,18 +8,18 @@ import InputStyled from "../../styles/Input.styled";
 import moneyMask from "../../utils/functions/moneyMask";
 
 const EntryForm = ({ text, id }) => {
-  const [amount, setAmount] = useState(0);
-  const [description, setDescription] = useState("");
+  const { pathname, state } = useLocation();
+  const [amount, setAmount] = useState(state ? state.amount : 0);
+  const [description, setDescription] = useState(state ? state.description : "");
   const { user } = useContext(UserProviderContext);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleRequest = async (e, apiRequest) => {
     e.preventDefault();
-    const signedAmountCents = /entrada/.test(location.pathname) ? amount*100 : -amount*100;
+    const signedAmountCents = /entrada/.test(pathname) ? amount*100 : -amount*100;
 
     try {
-      const res = await apiRequest({ description, amountCents: signedAmountCents, token: user.token });
+      const res = await apiRequest({ description, amountCents: signedAmountCents, token: user.token, id });
       console.log(res);
 
       navigate("/home");

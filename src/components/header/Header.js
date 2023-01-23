@@ -1,7 +1,7 @@
 import HeaderStyled from "./Header.styled";
 import logOutIcon from "../../assets/log-out-icon.png";
 import homeIcon from "../../assets/home-icon.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserProviderContext } from "../../providers/UserProvider";
 

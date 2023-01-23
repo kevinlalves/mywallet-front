@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserProviderContext, USER_STORAGE_KEY } from "../../../../providers/UserProvider";
+import { UserProviderContext } from "../../../../providers/UserProvider";
 import { signIn } from "../../../../services/mywallet-api";
 import ButtonStyled from "../../../../styles/Button.styled";
 import FormStyled from "../../../../styles/Form.styled";

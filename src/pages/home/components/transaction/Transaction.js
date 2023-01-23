@@ -8,10 +8,10 @@ const Transaction = ({ date, description, amountCents, id }) => {
 
   const updateTransaction = () => {
     if (isProfit) {
-      navigate(`/editar-entrada/${id}`);
+      return navigate(`/editar-entrada/${id}`, { state: { description, amount: moneyMask(`${amountCents}`) } });
     }
 
-    navigate(`/editar-saida/${id}`);
+    navigate(`/editar-saida/${id}`, { state: { description, amount: moneyMask(`${amountCents}`) } });
   };
 
   return (

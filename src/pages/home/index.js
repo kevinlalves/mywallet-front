@@ -2,9 +2,8 @@ import PageStyled from "../../styles/Page.styled";
 import Panel from "./components/panel/Panel";
 import Transactions from "./components/transactions/Transactions";
 import Header from "../../components/header/Header";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserProviderContext } from "../../providers/UserProvider";
-import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { user } = useContext(UserProviderContext);

@@ -17,6 +17,7 @@ const TransactionStyled = styled.li`
     overflow-wrap: break-word !important;
     text-align: left;
     width: calc(100% - 130px);
+    cursor: pointer;
   }
   p:nth-child(3) {
     color : ${props => props.isProfit ? props.theme.colors.profit : props.theme.colors.debt};
