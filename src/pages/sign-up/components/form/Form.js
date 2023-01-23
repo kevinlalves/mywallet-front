@@ -15,13 +15,12 @@ export default function SignInForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await signUp({ name, email, password });
-      console.log(res);
+      await signUp({ name, email, password });
 
       navigate("/");
     }
     catch (error) {
-      console.log(error.data);
+      console.log(error.response?.data);
     }
   };
 

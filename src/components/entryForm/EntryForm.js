@@ -5,13 +5,14 @@ import { createTransaction, updateTransaction } from "../../services/mywallet-ap
 import ButtonStyled from "../../styles/Button.styled";
 import FormStyled from "../../styles/Form.styled";
 import InputStyled from "../../styles/Input.styled";
+import handleError from "../../utils/functions/handleError";
 import moneyMask from "../../utils/functions/moneyMask";
 
 const EntryForm = ({ text, id }) => {
   const { pathname, state } = useLocation();
   const [amount, setAmount] = useState(state ? state.amount : 0);
   const [description, setDescription] = useState(state ? state.description : "");
-  const { user } = useContext(UserProviderContext);
+  const { user, setUser } = useContext(UserProviderContext);
   const navigate = useNavigate();
 
   const handleRequest = async (e, apiRequest) => {
@@ -19,12 +20,11 @@ const EntryForm = ({ text, id }) => {
     const signedAmountCents = /entrada/.test(pathname) ? amount*100 : -amount*100;
 
     try {
-      const res = await apiRequest({ description, amountCents: signedAmountCents, token: user.token, id });
-      console.log(res);
+      await apiRequest({ description, amountCents: signedAmountCents, token: user.token, id });
 
       navigate("/home");
     } catch (error) {
-      console.log(error.response?.data);
+      handleError(error, navigate, setUser);
     }
   };
 
